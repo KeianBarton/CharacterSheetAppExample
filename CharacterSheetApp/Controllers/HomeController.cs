@@ -17,14 +17,16 @@ namespace CharacterSheetApp.Controllers
 
         public IActionResult Create(string CharacterName)
         {
-            new Character(CharacterName);
+            if(!string.IsNullOrEmpty(CharacterName))
+                new Character(CharacterName);
+
             return RedirectToAction("Index");
         }
 
         public IActionResult Remove(string CharacterName)
         {
             var characterInList = GlobalVariables.Characters
-                .Where(c => c.Name == CharacterName)
+                .Where(c => string.Equals(c.Name, CharacterName, StringComparison.OrdinalIgnoreCase))
                 .FirstOrDefault();
             if (characterInList != null)
             {

@@ -11,7 +11,9 @@ namespace CharacterSheetApp.Models
 
         public Character(string name)
         {
-            Name = name;
+            // Capitalize first letter
+            Name = char.ToUpper(name[0]) + name.Substring(1);
+
             GlobalVariables.Characters.Add(this);
         }
 
