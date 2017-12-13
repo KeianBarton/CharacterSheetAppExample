@@ -21,6 +21,18 @@ namespace CharacterSheetApp.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Remove(string CharacterName)
+        {
+            var characterInList = GlobalVariables.Characters
+                .Where(c => c.Name == CharacterName)
+                .FirstOrDefault();
+            if (characterInList != null)
+            {
+                GlobalVariables.Characters.Remove(characterInList);
+            }
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

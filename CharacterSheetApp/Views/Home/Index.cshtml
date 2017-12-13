@@ -5,10 +5,11 @@
 @model List<Character>
 <h2>Characters:</h2>
 
-<form asp-action="Create" asp-controller="Home">
+<form asp-controller="Home">
     <div>
         <input name="CharacterName" />
-        <input type="submit" value="Add Character" />
+        <input asp-action="Create" type="submit" value="Add Character" />
+        <input asp-action="Remove" type="submit" value="Remove Character" />
     </div>
 </form>
 
