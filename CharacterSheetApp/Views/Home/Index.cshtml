@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model Character
+@model List<Character>
 <h2>Characters:</h2>
 
 <form asp-action="Create" asp-controller="Home">
@@ -13,7 +13,10 @@
 </form>
 
 <div>
+    @foreach (var item in @Model)
+    {
     <ul>
-        <li>@Model.Name</li>
+        <li>@item.Name</li>
     </ul>
+    }
 </div>

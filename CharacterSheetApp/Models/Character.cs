@@ -12,6 +12,12 @@ namespace CharacterSheetApp.Models
         public Character(string name)
         {
             Name = name;
+            GlobalVariables.Characters.Add(this);
+        }
+
+        public static List<Character> GetAll()
+        {
+            return GlobalVariables.Characters;
         }
     }
 }
