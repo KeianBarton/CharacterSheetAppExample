@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using ForgingAhead.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,11 +15,17 @@ namespace ForgingAhead.Controllers
             _context = context;
         }
 
+        [HttpPost]
         public IActionResult Create(Character character)
         {
             _context.Characters.Add(character);
             _context.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Create()
+        {
+            return View();
         }
 
         public IActionResult Index()
@@ -36,9 +40,9 @@ namespace ForgingAhead.Controllers
             return View(model);
         }
 
-        public IActionResult Details(string name)
+        public IActionResult Details(Character character)
         {
-            var model = _context.Characters.FirstOrDefault(c => c.Name == name);
+            var model = _context.Characters.Find(character);
             return View(model);
         }
 
@@ -49,9 +53,9 @@ namespace ForgingAhead.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(string name)
+        public IActionResult Delete(Character character)
         {
-            var original = _context.Characters.FirstOrDefault(c => c.Name == name);
+            var original = _context.Characters.Find(character);
             if(original != null)
             {
                 _context.Characters.Remove(original);

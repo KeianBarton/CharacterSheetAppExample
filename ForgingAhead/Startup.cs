@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ForgingAhead.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
 
 namespace ForgingAhead
 {
@@ -22,10 +20,20 @@ namespace ForgingAhead
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddEntityFrameworkSqlServer()
-                .AddDbContext<Models.ApplicationDbContext>();
+            services
 
-            services.AddMvc();
+                // Add in-memory database
+                //.AddEntityFrameworkInMemoryDatabase()
+                //.AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
+                //options.UseInMemoryDatabase("database")
+                //       .UseInternalServiceProvider(serviceProvider))
+
+                // Add SQL Server database
+                .AddEntityFrameworkSqlServer()
+                .AddDbContext<ApplicationDbContext>(opt =>
+                    opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")))
+                
+                .AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
