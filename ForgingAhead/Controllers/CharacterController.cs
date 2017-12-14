@@ -9,6 +9,7 @@ namespace ForgingAhead.Controllers
     public class CharacterController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private const string CHARACTERS = "Characters";
 
         public CharacterController(ApplicationDbContext context)
         {
@@ -42,7 +43,8 @@ namespace ForgingAhead.Controllers
 
         public IActionResult Details(Character character)
         {
-            var model = _context.Characters.Find(character);
+            var model = _context.Characters.FirstOrDefault(c => c.Name == character.Name);
+            // TODO
             return View(model);
         }
 
@@ -55,8 +57,8 @@ namespace ForgingAhead.Controllers
 
         public IActionResult Delete(Character character)
         {
-            var original = _context.Characters.Find(character);
-            if(original != null)
+            var original = _context.Characters.FirstOrDefault(c => c.Name == character.Name);
+            if (original != null)
             {
                 _context.Characters.Remove(original);
                 _context.SaveChanges();

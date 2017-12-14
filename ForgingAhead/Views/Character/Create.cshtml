@@ -2,12 +2,15 @@
     ViewData["Title"] = "Create character";
 }
 @model Character
+@section header{
+    <meta name="description" content="Create a character in ForgingAhead." />
+}
 <h1>@ViewData["Title"]</h1>
-<hr/>
+<hr />
 <form asp-action="Create" asp-controller="Character">
     <div class="form-horizontal">
         <h4>Character</h4>
-        <hr/>
+        <hr />
         <div class="form-group">
             <div class="row">
                 <label class="control-label col-md-2" asp-for="Name"></label>

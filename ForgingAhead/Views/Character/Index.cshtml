@@ -2,6 +2,9 @@
     ViewData["Title"] = "Characters";
 }
 @model List<Character>
+@section header{ 
+    <meta name="description" content="Lists all characters in ForgingAhead." />
+}
 <h1>@ViewData["Title"]</h1>
 <p>
     <a asp-action="Create" asp-controller="Character">Create new character</a>
