@@ -30,9 +30,9 @@ namespace ForgingAhead.Controllers
             return View(model);
         }
 
-        public IActionResult GetActive()
+        public IActionResult GetFiltered(Func<Character,bool> del)
         {
-            var model = _context.Characters.Where(c => c.IsActive).ToList();
+            var model = _context.Characters.Where(del).ToList();
             return View(model);
         }
 
