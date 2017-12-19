@@ -1,20 +1,26 @@
 ﻿@model Equipment
 
-<div class="col-md-5 bordered-div">
-    <h4>
-        <a asp-action="Details" asp-controller="Equipment" asp-route-name="@Model.Name">@Model.Name</a>
-        <a asp-action="Edit" asp-controller="Equipment" asp-route-name="@Model.Name">&#9998;</a>
+<div class="col-md-5 bordered-div row">
+    <h4 class="row">
+        <a asp-action="Details"
+            asp-controller="Equipment"
+            asp-route-name="@Model.Name"
+            class="col-md-10 col-xs-8">@Model.Name</a>
+        <a asp-action="Edit"
+            asp-controller="Equipment"
+            asp-route-name="@Model.Name"
+            class="col-md-2 col-xs-4 text-right">&#9998;</a>
     </h4>
-    <hr/>
-    <div class="col-md-6">
+    <hr />
+    <div class="col-md-6 col-xs-12">
         <div class="form-group">
-            <label asp-for="Attack" class="control-label col-md-8"></label>
-            <div class="col-sm-3">
-                <p class="form-control-static">@Model.Attack</p>
+            <div class="row">
+                <label asp-for="Attack" class="control-label col-xs-8"></label>
+                <p class="form-control-static col-xs-4 text-right">@Model.Attack</p>
             </div>
-            <label asp-for="Defense" class="control-label col-md-8"></label>
-            <div class="col-sm-3">
-                <p class="form-control-static">@Model.Defense</p>
+            <div class="row">
+                <label asp-for="Defense" class="control-label col-xs-8"></label>
+                <p class="form-control-static col-xs-4 text-right">@Model.Defense</p>
             </div>
         </div>
     </div>

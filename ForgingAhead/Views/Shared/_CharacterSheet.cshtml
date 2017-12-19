@@ -1,28 +1,34 @@
 ﻿@model Character
 
-<div class="col-md-5 bordered-div">
-    <h4>
-        <a asp-action="Details" asp-controller="Character" asp-route-name="@Model.Name">@Model.Name</a>
-        <a asp-action="Edit" asp-controller="Character" asp-route-name="@Model.Name">&#9998;</a>
+<div class="col-md-5 bordered-div row">
+    <h4 class="row">
+        <a asp-action="Details"
+            asp-controller="Character"
+            asp-route-name="@Model.Name"
+            class="col-md-10 col-xs-8">@Model.Name</a>
+        <a asp-action="Edit"
+            asp-controller="Character"
+            asp-route-name="@Model.Name"
+            class="col-md-2 col-xs-4 text-right">&#9998;</a>
     </h4>
-    <hr/>
-    <div class="col-md-6">
+    <hr />
+    <div class="col-md-6 col-xs-12">
         <div class="form-group">
-            <label asp-for="Level" class="control-label col-md-8"></label>
-            <div class="col-sm-3">
-                <p class="form-control-static">@Model.Level</p>
+            <div class="row">
+                <label asp-for="Level" class="control-label col-xs-8"></label>
+                <p class="form-control-static col-xs-4 text-right">@Model.Level</p>
             </div>
-            <label asp-for="Strength" class="control-label col-md-8"></label>
-            <div class="col-sm-3">
-                <p class="form-control-static">@Model.Strength</p>
+            <div class="row">
+                <label asp-for="Strength" class="control-label col-xs-8"></label>
+                <p class="form-control-static col-xs-4 text-right">@Model.Strength</p>
             </div>
-            <label asp-for="Dexterity" class="control-label col-md-8"></label>
-            <div class="col-sm-3">
-                <p class="form-control-static">@Model.Dexterity</p>
+            <div class="row">
+                <label asp-for="Dexterity" class="control-label col-xs-8"></label>
+                <p class="form-control-static col-xs-4 text-right">@Model.Dexterity</p>
             </div>
-            <label asp-for="Intelligence" class="control-label col-md-8"></label>
-            <div class="col-sm-3">
-                <p class="form-control-static">@Model.Intelligence</p>
+            <div class="row">
+                <label asp-for="Intelligence" class="control-label col-xs-8"></label>
+                <p class="form-control-static col-xs-4 text-right">@Model.Intelligence</p>
             </div>
         </div>
     </div>
