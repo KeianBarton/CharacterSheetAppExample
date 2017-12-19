@@ -1,0 +1,7 @@
+﻿@model Character
+<h2>Edit Character</h2>
+
+<form asp-action="Update" asp-controller="Character">
+    @Html.EditorForModel()
+    <input type="submit" value="Update" class="btn btn-default" />
+</form>

@@ -16,6 +16,19 @@ namespace ForgingAhead.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public IActionResult Index()
+        {
+            var model = _context.Characters.ToList();
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Create(Character character)
         {
@@ -24,30 +37,16 @@ namespace ForgingAhead.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Create()
+        [HttpGet]
+        [Route("Character/{name}/Edit")]
+        public IActionResult Edit(string name)
         {
-            return View();
-        }
-
-        public IActionResult Index()
-        {
-            var model = _context.Characters.ToList();
+            var model = _context.Characters.FirstOrDefault(c => c.Name == name);
+            ViewData["Title"] = "Edit " + model.Name ?? string.Empty;
             return View(model);
         }
 
-        public IActionResult GetFiltered(Func<Character,bool> del)
-        {
-            var model = _context.Characters.Where(del).ToList();
-            return View(model);
-        }
-
-        public IActionResult Details(Character character)
-        {
-            var model = _context.Characters.FirstOrDefault(c => c.Name == character.Name);
-
-            return View(model);
-        }
-
+        [HttpPost]
         public IActionResult Update(Character character)
         {
             _context.Entry(character).State = EntityState.Modified;
@@ -55,9 +54,26 @@ namespace ForgingAhead.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(Character character)
+        [HttpGet]
+        public IActionResult GetFiltered(Func<Character,bool> del)
         {
-            var original = _context.Characters.FirstOrDefault(c => c.Name == character.Name);
+            var model = _context.Characters.Where(del).ToList();
+            return View(model);
+        }
+
+        [HttpGet]
+        [Route("Character/{name}/Details")]
+        public IActionResult Details(string name)
+        {
+            var model = _context.Characters.FirstOrDefault(c => c.Name == name);
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("Character/{name}/Delete")]
+        public IActionResult Delete(string name)
+        {
+            var original = _context.Characters.FirstOrDefault(c => c.Name == name);
             if (original != null)
             {
                 _context.Characters.Remove(original);
@@ -66,6 +82,7 @@ namespace ForgingAhead.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
         public IActionResult DeleteAllCharacters()
         {
             foreach(var character in _context.Characters)

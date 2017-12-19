@@ -16,6 +16,19 @@ namespace ForgingAhead.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public IActionResult Index()
+        {
+            var model = _context.Equipment.ToList();
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Create(Equipment equipment)
         {
@@ -24,30 +37,16 @@ namespace ForgingAhead.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Create()
+        [HttpPost]
+        [Route("Equipment/{name}/Edit")]
+        public IActionResult Edit(string name)
         {
-            return View();
-        }
-
-        public IActionResult Index()
-        {
-            var model = _context.Equipment.ToList();
+            var model = _context.Equipment.FirstOrDefault(e => e.Name == name);
+            ViewData["Title"] = "Edit " + model.Name ?? string.Empty;
             return View(model);
         }
 
-        public IActionResult GetFiltered(Func<Equipment, bool> del)
-        {
-            var model = _context.Equipment.Where(del).ToList();
-            return View(model);
-        }
-
-        public IActionResult Details(Equipment equipment)
-        {
-            var model = _context.Equipment.FirstOrDefault(c => c.Name == equipment.Name);
-
-            return View(model);
-        }
-
+        [HttpPost]
         public IActionResult Update(Equipment equipment)
         {
             _context.Entry(equipment).State = EntityState.Modified;
@@ -55,9 +54,26 @@ namespace ForgingAhead.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(Equipment equipment)
+        [HttpGet]
+        public IActionResult GetFiltered(Func<Equipment, bool> del)
         {
-            var original = _context.Equipment.FirstOrDefault(c => c.Name == equipment.Name);
+            var model = _context.Equipment.Where(del).ToList();
+            return View(model);
+        }
+
+        [HttpGet]
+        [Route("Equipment/{name}/Details")]
+        public IActionResult Details(string name)
+        {
+            var model = _context.Equipment.FirstOrDefault(e => e.Name == name);
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("Character/{name}/Delete")]
+        public IActionResult Delete(string name)
+        {
+            var original = _context.Equipment.FirstOrDefault(e => e.Name == name);
             if (original != null)
             {
                 _context.Equipment.Remove(original);
@@ -66,6 +82,7 @@ namespace ForgingAhead.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
         public IActionResult DeleteAllEquipment()
         {
             foreach(var equipment in _context.Equipment)

@@ -13,8 +13,11 @@
     @foreach(var item in Model)
     {
         <li>
-            <a asp-action="Details" asp-controller="Character" asp-route-name="@item.Name">
+            <a asp-action="Details" asp-controller="Character" asp-route-id="@item.Name">
                 @item.Name
+            </a>
+            <a asp-action="Edit" asp-controller="Character" asp-route-id="@item.Name">
+                &#9998;
             </a>
         </li>
     }
