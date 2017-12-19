@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Create equipment";
+}
+@model Equipment
+@section header{
+    <meta name="description" content="Create an equipment item in ForgingAhead." />
+}
+<h1>@ViewData["Title"]</h1>
+<hr />
+<form asp-action="Create" asp-controller="Equipment">
+    <div class="form-horizontal">
+        <h4>Equipment</h4>
+        <hr />
+        <div class="form-group">
+            <div class="row">
+                <label class="control-label col-md-2" asp-for="Name"></label>
+                <div class="col-md-10">
+                    <input class="form-control" asp-for="Name" />
+                </div>
+            </div>
+            <div class="row">
+                <label class="control-label col-md-2" asp-for="Attack"></label>
+                <div class="col-md-10">
+                    <input class="form-control" asp-for="Attack" />
+                </div>
+            </div>
+            <div class="row">
+                <label class="control-label col-md-2" asp-for="Defense"></label>
+                <div class="col-md-10">
+                    <input class="form-control" asp-for="Defense" />
+                </div>
+            </div>
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</form>

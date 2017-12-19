@@ -1,0 +1,50 @@
+﻿@model Character
+
+<div class="col-md-5 bordered-div">
+    <h4>
+        @Model.Name
+    </h4>
+    <hr/>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label asp-for="Level" class="control-label col-md-8"></label>
+            <div class="col-sm-3">
+                <p class="form-control-static">@Model.Level</p>
+            </div>
+            <label asp-for="Strength" class="control-label col-md-8"></label>
+            <div class="col-sm-3">
+                <p class="form-control-static">@Model.Strength</p>
+            </div>
+            <label asp-for="Dexterity" class="control-label col-md-8"></label>
+            <div class="col-sm-3">
+                <p class="form-control-static">@Model.Dexterity</p>
+            </div>
+            <label asp-for="Intelligence" class="control-label col-md-8"></label>
+            <div class="col-sm-3">
+                <p class="form-control-static">@Model.Intelligence</p>
+            </div>
+            @if (Model.Equipment != null)
+            {
+            <table class="EquipmentTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Att</th>
+                        <th>Def</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Equipment)
+                    {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Attack</td>
+                    <td>@item.Defense</td>
+                </tr>
+                    }
+                </tbody>
+            </table>
+            }
+        </div>
+    </div>
+</div>

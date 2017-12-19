@@ -44,7 +44,7 @@ namespace ForgingAhead.Controllers
         public IActionResult Details(Character character)
         {
             var model = _context.Characters.FirstOrDefault(c => c.Name == character.Name);
-            // TODO
+
             return View(model);
         }
 
@@ -63,6 +63,16 @@ namespace ForgingAhead.Controllers
                 _context.Characters.Remove(original);
                 _context.SaveChanges();
             }
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteAllCharacters()
+        {
+            foreach(var character in _context.Characters)
+            {
+                _context.Entry(character).State = EntityState.Deleted;
+            }
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
     }

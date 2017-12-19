@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Equipment";
+}
+@model List<Equipment>
+@section header{
+    <meta name="description" content="Lists all equipment in ForgingAhead." />
+}
+<h1>@ViewData["Title"]</h1>
+<p>
+    <a asp-action="Create" asp-controller="Equipment">Create new equipment</a>
+</p>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <a asp-action="Details" asp-controller="Equipment" asp-route-name="@item.Name">
+                @item.Name
+            </a>
+        </li>
+    }
+</ul>
+<hr />
+<a asp-action="DeleteAllEquipment" asp-controller="Equipment">Delete all equipment</a>

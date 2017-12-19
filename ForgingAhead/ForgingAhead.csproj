@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20171215160620_ForgingAheadExampleDB.cs" />
+    <Compile Remove="Migrations\20171215160620_ForgingAheadExampleDB.Designer.cs" />
+    <Compile Remove="Migrations\20171215161410_ForgingAheadExampleDB.cs" />
+    <Compile Remove="Migrations\20171215161410_ForgingAheadExampleDB.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>

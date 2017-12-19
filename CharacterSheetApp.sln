@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CharacterSheetApp", "CharacterSheetApp\CharacterSheetApp.csproj", "{39553967-B3BC-4F7C-BC8F-AE465D138794}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForgingAhead", "ForgingAhead\ForgingAhead.csproj", "{CBBC01E8-34AC-475A-874C-CCEA2A0A500A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ForgingAhead", "ForgingAhead\ForgingAhead.csproj", "{CBBC01E8-34AC-475A-874C-CCEA2A0A500A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
