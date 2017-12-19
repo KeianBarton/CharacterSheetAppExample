@@ -10,4 +10,6 @@
 <form asp-action="Update" asp-controller="Character">
     @*Html.EditorForModel()*@
     @Html.Partial("_CharacterEditForm", Model)
+    <hr />
+    <input type="submit" value="Update" class="btn btn-default" />
 </form>

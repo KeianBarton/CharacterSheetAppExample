@@ -8,5 +8,7 @@
 <h1>@ViewData["Title"]</h1>
 <hr />
 <form asp-action="Create" asp-controller="Equipment">
-    @Html.Partial("_EquipmentEditSheet", Model)
+    @Html.Partial("_EquipmentEditForm", Model)
+    <hr />
+    <input type="submit" value="Create" class="btn btn-default" />
 </form>

@@ -82,14 +82,14 @@ namespace ForgingAhead.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         [HttpPost]
         public IActionResult DeleteAll()
         {
-            foreach(var equipment in _context.Equipment)
+            foreach (var equipment in _context.Equipment)
             {
-                _context.Entry(equipment).State = EntityState.Deleted;
+                Delete(equipment.Name);
             }
-            _context.SaveChanges();
             return RedirectToAction("Index");
         }
     }
