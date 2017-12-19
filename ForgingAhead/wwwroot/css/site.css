@@ -33,3 +33,18 @@
         display: none;
     }
 }
+
+/*                                                      */
+/* Custom CSS added (not auto-generated)                */
+/*                                                      */
+
+.bordered-div {
+    border-radius: 12px;
+    background-color: #ffedd6;
+    border: thin solid black;
+    margin: 12px;
+}
+
+.bordered-div > hr {
+    border: thin solid #fcddb5;
+}

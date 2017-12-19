@@ -2,7 +2,7 @@
 
 <div class="col-md-5 bordered-div">
     <h4>
-        @Model.Name
+        <a asp-action="Details" asp-controller="Character" asp-route-name="@Model.Name">@Model.Name</a>
         <a asp-action="Edit" asp-controller="Character" asp-route-name="@Model.Name">&#9998;</a>
     </h4>
     <hr/>

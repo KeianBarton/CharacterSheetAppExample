@@ -1,3 +1,10 @@
-﻿@model Character
+﻿@{
+    ViewData["Title"] = "Character Details";
+}
+@model Character
+@section header{
+    <meta name="description" content="Character details in ForgingAhead." />
+}
+<h1>@ViewData["Title"]</h1>
 
 @Html.Partial("_CharacterSheet", Model)

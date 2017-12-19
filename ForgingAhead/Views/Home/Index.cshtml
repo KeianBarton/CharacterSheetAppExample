@@ -1,8 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Active Characters";
 }
 @model List<Character>
 @section header{
     <meta name="description" content="Lists all characters in ForgingAhead." />
 }
 <h1>@ViewData["Title"]</h1>
+
+@foreach(var item in @Model)
+{
+    @if(item.IsActive)
+    {
+        @Html.Partial("_CharacterSheet", item)
+    }
+}

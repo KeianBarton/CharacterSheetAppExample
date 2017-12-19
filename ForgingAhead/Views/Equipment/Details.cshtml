@@ -1,3 +1,10 @@
-﻿@model Equipment
+﻿@{
+    ViewData["Title"] = "Equipment Details";
+}
+@model Equipment
+@section header{
+    <meta name="description" content="Equipment details in ForgingAhead." />
+}
+<h1>@ViewData["Title"]</h1>
 
 @Html.Partial("_EquipmentSheet", Model)
