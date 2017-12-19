@@ -1,0 +1,26 @@
+﻿@model Equipment
+
+<div class="form-horizontal">
+    <div class="form-group">
+        <div class="row">
+            <label class="control-label col-md-2" asp-for="Name"></label>
+            <div class="col-md-10">
+                <input class="form-control" asp-for="Name" />
+            </div>
+        </div>
+        <div class="row">
+            <label class="control-label col-md-2" asp-for="Attack"></label>
+            <div class="col-md-10">
+                <input class="form-control" asp-for="Attack" />
+            </div>
+        </div>
+        <div class="row">
+            <label class="control-label col-md-2" asp-for="Defense"></label>
+            <div class="col-md-10">
+                <input class="form-control" asp-for="Defense" />
+            </div>
+        </div>
+        <input type="submit" value="Update" class="btn btn-default" />
+    </div>
+    <hr />
+</div>

@@ -1,7 +1,13 @@
-﻿@model Character
-<h2>Edit Character</h2>
-
+﻿@{
+    ViewData["Title"] = "Edit character";
+}
+@model Character
+@section header{
+    <meta name="description" content="Edit a character in ForgingAhead." />
+}
+<h1>@ViewData["Title"]</h1>
+<hr />
 <form asp-action="Update" asp-controller="Character">
-    @Html.EditorForModel()
-    <input type="submit" value="Update" class="btn btn-default" />
+    @*Html.EditorForModel()*@
+    @Html.Partial("_CharacterEditForm", Model)
 </form>

@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ForgingAhead.Models
 {
     public class Character
     {
+        [HiddenInput]
         [Key]
         public int Id { get; private set; }
 

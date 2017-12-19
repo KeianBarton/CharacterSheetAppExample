@@ -1,7 +1,13 @@
-﻿@model Equipment
-<h2>Edit Equipment</h2>
-
+﻿@{
+    ViewData["Title"] = "Edit equipment";
+}
+@model Equipment
+@section header{
+    <meta name="description" content="Edit an equipment item in ForgingAhead." />
+}
+<h1>@ViewData["Title"]</h1>
+<hr />
 <form asp-action="Update" asp-controller="Equipment">
-    @Html.EditorForModel()
-    <input type="submit" value="Update" class="btn btn-default" />
+    @*Html.EditorForModel()*@
+    @Html.Partial("_EquipmentEditForm", Model)
 </form>
