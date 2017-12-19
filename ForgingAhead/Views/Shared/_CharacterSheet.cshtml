@@ -24,28 +24,36 @@
             <div class="col-sm-3">
                 <p class="form-control-static">@Model.Intelligence</p>
             </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Att</th>
+                    <th>Def</th>
+                </tr>
+            </thead>
+            <tbody>
             @if (Model.Equipment != null)
             {
-            <table class="EquipmentTable">
-                <thead>
+                @foreach (var item in Model.Equipment)
+                {
                     <tr>
-                        <th>Name</th>
-                        <th>Att</th>
-                        <th>Def</th>
+                        <td>@item.Name</td>
+                        <td>@item.Attack</td>
+                        <td>@item.Defense</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Equipment)
-                    {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Attack</td>
-                    <td>@item.Defense</td>
-                </tr>
-                    }
-                </tbody>
-            </table>
+                }
             }
-        </div>
+            else
+            {
+                <tr>
+                    <td colspan="3">No equipment</td>
+                </tr>
+            }
+            </tbody>
+        </table>
     </div>
 </div>

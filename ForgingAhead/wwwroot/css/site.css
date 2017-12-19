@@ -45,6 +45,14 @@
     margin: 12px;
 }
 
-.bordered-div > hr {
+.bordered-div hr {
     border: thin solid #fcddb5;
+}
+
+.bordered-div table {
+    border: thin solid #fcddb5;
+}
+
+.bordered-div table thead {
+    background-color: #ddd;
 }
