@@ -9,7 +9,7 @@ namespace ForgingAhead.Controllers
     public class CharacterController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private const string CHARACTERS = "Characters";
+        private const string CHARACTER = "Character";
 
         public CharacterController(ApplicationDbContext context)
         {
@@ -38,7 +38,7 @@ namespace ForgingAhead.Controllers
         }
 
         [HttpGet]
-        [Route("Character/{name}/Edit")]
+        [Route(CHARACTER + "/{name}/Edit")]
         public IActionResult Edit(string name)
         {
             var model = _context.Characters.FirstOrDefault(c => c.Name == name);
@@ -62,7 +62,7 @@ namespace ForgingAhead.Controllers
         }
 
         [HttpGet]
-        [Route("Character/{name}/Details")]
+        [Route(CHARACTER + "/{name}/Details")]
         public IActionResult Details(string name)
         {
             var model = _context.Characters.FirstOrDefault(c => c.Name == name);
@@ -70,7 +70,7 @@ namespace ForgingAhead.Controllers
         }
 
         [HttpPost]
-        [Route("Character/{name}/Delete")]
+        [Route(CHARACTER + "/{name}/Delete")]
         public IActionResult Delete(string name)
         {
             var original = _context.Characters.FirstOrDefault(c => c.Name == name);
@@ -83,7 +83,7 @@ namespace ForgingAhead.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteAllCharacters()
+        public IActionResult DeleteAll()
         {
             foreach(var character in _context.Characters)
             {

@@ -37,8 +37,8 @@ namespace ForgingAhead.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        [Route("Equipment/{name}/Edit")]
+        [HttpGet]
+        [Route(EQUIPMENT + "/{name}/Edit")]
         public IActionResult Edit(string name)
         {
             var model = _context.Equipment.FirstOrDefault(e => e.Name == name);
@@ -62,7 +62,7 @@ namespace ForgingAhead.Controllers
         }
 
         [HttpGet]
-        [Route("Equipment/{name}/Details")]
+        [Route(EQUIPMENT + "/{name}/Details")]
         public IActionResult Details(string name)
         {
             var model = _context.Equipment.FirstOrDefault(e => e.Name == name);
@@ -70,7 +70,7 @@ namespace ForgingAhead.Controllers
         }
 
         [HttpPost]
-        [Route("Character/{name}/Delete")]
+        [Route(EQUIPMENT + "/{name}/Delete")]
         public IActionResult Delete(string name)
         {
             var original = _context.Equipment.FirstOrDefault(e => e.Name == name);
@@ -83,7 +83,7 @@ namespace ForgingAhead.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteAllEquipment()
+        public IActionResult DeleteAll()
         {
             foreach(var equipment in _context.Equipment)
             {
