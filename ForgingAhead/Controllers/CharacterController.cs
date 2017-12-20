@@ -32,6 +32,10 @@ namespace ForgingAhead.Controllers
         [HttpPost]
         public IActionResult Create(Character character)
         {
+            // Validation
+            if (!IsValidSubmission(character))
+                return View(character);
+
             _context.Characters.Add(character);
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -49,6 +53,10 @@ namespace ForgingAhead.Controllers
         [HttpPost]
         public IActionResult Update(Character character)
         {
+            // Validation
+            if (!IsValidSubmission(character))
+                return View(character);
+
             _context.Entry(character).State = EntityState.Modified;
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -91,6 +99,13 @@ namespace ForgingAhead.Controllers
                 Delete(character.Name);
             }
             return RedirectToAction("Index");
+        }
+
+        private bool IsValidSubmission(Character character)
+        {
+            if (_context.Characters.Any(c => c.Name == character.Name))
+                ModelState.AddModelError("Name", "Name is already in use.");
+            return ModelState.IsValid;
         }
     }
 }
