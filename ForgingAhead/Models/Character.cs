@@ -38,7 +38,7 @@ namespace ForgingAhead.Models
         public int? Intelligence { get; set; }
             = null;
 
-        public List<Equipment> Equipment { get; set; }
+        public virtual List<Equipment> Equipment { get; set; }
             = new List<Equipment>();
     }
 }

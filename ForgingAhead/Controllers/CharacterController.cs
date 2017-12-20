@@ -48,7 +48,7 @@ namespace ForgingAhead.Controllers
             character.Equipment.Clear();
             if(viewModel.SelectedEquipment != null)
             {
-                foreach (var item in viewModel.SelectedEquipment.Where(e => e.Value).ToList())
+                foreach (var item in viewModel.SelectedEquipment.Where(e => e.Value == true).ToList())
                 {
                     var equipment = _context.Equipment.FirstOrDefault(e => e.Name == item.Key);
                     character.Equipment.Add(equipment);
@@ -77,23 +77,27 @@ namespace ForgingAhead.Controllers
         [HttpPost]
         public IActionResult Update(CharacterEditViewModel viewModel)
         {
-            var character = viewModel.Character;
+            var character = _context.Characters.Single(c => c.Name == viewModel.Character.Name); ;
 
             // Validation
             if (!ModelState.IsValid)
                 return View("Edit", viewModel);
 
-            // Add changes to equipment
+            /* Add changes to equipment
+             * Child data changes will not be registered by default
+             * Setting the state to Modified only updates scalar and complex properties,
+             * not your navigation properties. The following is a workaround: */
             character.Equipment.Clear();
+            _context.Entry(character).State = EntityState.Modified;
+            
             if (viewModel.SelectedEquipment != null)
             {
-                foreach (var item in viewModel.SelectedEquipment.Where(e => e.Value).ToList())
+                foreach (var item in viewModel.SelectedEquipment.Where(e => e.Value == true).ToList())
                 {
                     var equipment = _context.Equipment.Single(e => e.Name == item.Key);
                     character.Equipment.Add(equipment);
                 }
             }
-            _context.Entry(character).State = EntityState.Modified;
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
