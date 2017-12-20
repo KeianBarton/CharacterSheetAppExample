@@ -44,8 +44,16 @@ namespace ForgingAhead.Controllers
             if (!IsValidSubmission(character))
                 return View(viewModel);
 
-            foreach (var item in viewModel.SelectedEquipment.Where(e => e.Value == true).ToList())
-                character.Equipment.Add(_context.Equipment.FirstOrDefault(e => e.Name == item.Key));
+            // Add changes to equipment
+            character.Equipment.Clear();
+            if(viewModel.SelectedEquipment != null)
+            {
+                foreach (var item in viewModel.SelectedEquipment.Where(e => e.Value).ToList())
+                {
+                    var equipment = _context.Equipment.FirstOrDefault(e => e.Name == item.Key);
+                    character.Equipment.Add(equipment);
+                }
+            }
 
             _context.Characters.Add(character);
             _context.SaveChanges();
@@ -72,12 +80,19 @@ namespace ForgingAhead.Controllers
             var character = viewModel.Character;
 
             // Validation
-            if (!IsValidSubmission(character))
-                return View(viewModel);
+            if (!ModelState.IsValid)
+                return View("Edit", viewModel);
 
-            foreach (var item in viewModel.SelectedEquipment.Where(e => e.Value == true).ToList())
-                character.Equipment.Add(_context.Equipment.FirstOrDefault(e => e.Name == item.Key));
-
+            // Add changes to equipment
+            character.Equipment.Clear();
+            if (viewModel.SelectedEquipment != null)
+            {
+                foreach (var item in viewModel.SelectedEquipment.Where(e => e.Value).ToList())
+                {
+                    var equipment = _context.Equipment.Single(e => e.Name == item.Key);
+                    character.Equipment.Add(equipment);
+                }
+            }
             _context.Entry(character).State = EntityState.Modified;
             _context.SaveChanges();
             return RedirectToAction("Index");

@@ -17,6 +17,16 @@
     <Compile Remove="Migrations\20171220123841_ForgingAheadDB3.Designer.cs" />
     <Compile Remove="Migrations\20171220125347_ForgingAheadDB4.cs" />
     <Compile Remove="Migrations\20171220125347_ForgingAheadDB4.Designer.cs" />
+    <Compile Remove="Migrations\20171220140338_ForgingAheadDB.cs" />
+    <Compile Remove="Migrations\20171220140338_ForgingAheadDB.Designer.cs" />
+    <Compile Remove="Migrations\20171220144329_ForgingAheadDB2.cs" />
+    <Compile Remove="Migrations\20171220144329_ForgingAheadDB2.Designer.cs" />
+    <Compile Remove="Migrations\20171220144536_ForgingAheadDB2.cs" />
+    <Compile Remove="Migrations\20171220144536_ForgingAheadDB2.Designer.cs" />
+    <Compile Remove="Migrations\20171220144600_ForgingAheadDB.cs" />
+    <Compile Remove="Migrations\20171220144600_ForgingAheadDB.Designer.cs" />
+    <Compile Remove="Migrations\20171220144750_ForgingAheadDB.cs" />
+    <Compile Remove="Migrations\20171220144750_ForgingAheadDB.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

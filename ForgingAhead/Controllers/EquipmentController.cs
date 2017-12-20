@@ -54,8 +54,8 @@ namespace ForgingAhead.Controllers
         public IActionResult Update(Equipment equipment)
         {
             // Validation
-            if (!IsValidSubmission(equipment))
-                return View(equipment);
+            if (!ModelState.IsValid)
+                return View("Edit", equipment);
 
             _context.Entry(equipment).State = EntityState.Modified;
             _context.SaveChanges();
