@@ -87,7 +87,8 @@ namespace ForgingAhead.Controllers
         [Route(CHARACTER + "/{name}/Details")]
         public IActionResult Details(string name)
         {
-            var model = _context.Characters.FirstOrDefault(c => c.Name == name);
+            // We must use "Include" to enable Eager Loading
+            var model = _context.Characters.Include(c => c.Equipment).FirstOrDefault(c => c.Name == name);
             return View(model);
         }
 

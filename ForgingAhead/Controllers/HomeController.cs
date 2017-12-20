@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ForgingAhead.Models;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace ForgingAhead.Controllers
 {
@@ -17,7 +18,8 @@ namespace ForgingAhead.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var model = _context.Characters.ToList();
+            // We must use "Include" to enable Eager Loading
+            var model = _context.Characters.Include(c => c.Equipment).ToList();
             return View(model);
         }
 
