@@ -9,6 +9,14 @@
     <Compile Remove="Migrations\20171215160620_ForgingAheadExampleDB.Designer.cs" />
     <Compile Remove="Migrations\20171215161410_ForgingAheadExampleDB.cs" />
     <Compile Remove="Migrations\20171215161410_ForgingAheadExampleDB.Designer.cs" />
+    <Compile Remove="Migrations\20171215161451_ForgingAheadDB.cs" />
+    <Compile Remove="Migrations\20171215161451_ForgingAheadDB.Designer.cs" />
+    <Compile Remove="Migrations\20171220103206_ForgingAheadDB2.cs" />
+    <Compile Remove="Migrations\20171220103206_ForgingAheadDB2.Designer.cs" />
+    <Compile Remove="Migrations\20171220123841_ForgingAheadDB3.cs" />
+    <Compile Remove="Migrations\20171220123841_ForgingAheadDB3.Designer.cs" />
+    <Compile Remove="Migrations\20171220125347_ForgingAheadDB4.cs" />
+    <Compile Remove="Migrations\20171220125347_ForgingAheadDB4.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
