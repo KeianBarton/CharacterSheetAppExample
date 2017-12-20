@@ -42,7 +42,7 @@
                 </tr>
             </thead>
             <tbody>
-            @if (Model.Equipment != null)
+            @if (Model.Equipment.Count() != 0)
             {
                 @foreach (var item in Model.Equipment)
                 {

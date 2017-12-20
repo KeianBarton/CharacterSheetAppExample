@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ForgingAhead.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -26,15 +27,25 @@ namespace ForgingAhead.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var model = new CharacterEditViewModel(){
+                Character = new Character(),
+                SelectedEquipment = new Dictionary<string,bool>()
+            };
+            SelectEquipmentItems(model.Character, model.SelectedEquipment);
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Create(Character character)
+        public IActionResult Create(CharacterEditViewModel viewModel)
         {
+            var character = viewModel.Character;
+
             // Validation
             if (!IsValidSubmission(character))
-                return View(character);
+                return View(viewModel);
+
+            foreach (var item in viewModel.SelectedEquipment.Where(e => e.Value == true).ToList())
+                character.Equipment.Add(_context.Equipment.FirstOrDefault(e => e.Name == item.Key));
 
             _context.Characters.Add(character);
             _context.SaveChanges();
@@ -45,28 +56,31 @@ namespace ForgingAhead.Controllers
         [Route(CHARACTER + "/{name}/Edit")]
         public IActionResult Edit(string name)
         {
-            var model = _context.Characters.FirstOrDefault(c => c.Name == name);
-            ViewData["Title"] = "Edit " + model.Name ?? string.Empty;
+            var model = new CharacterEditViewModel()
+            {
+                Character = _context.Characters.FirstOrDefault(c => c.Name == name),
+                SelectedEquipment = new Dictionary<string, bool>()
+            };
+            SelectEquipmentItems(model.Character, model.SelectedEquipment);
+            ViewData["Title"] = "Edit " + model.Character.Name ?? string.Empty;
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Update(Character character)
+        public IActionResult Update(CharacterEditViewModel viewModel)
         {
+            var character = viewModel.Character;
+
             // Validation
             if (!IsValidSubmission(character))
-                return View(character);
+                return View(viewModel);
+
+            foreach (var item in viewModel.SelectedEquipment.Where(e => e.Value == true).ToList())
+                character.Equipment.Add(_context.Equipment.FirstOrDefault(e => e.Name == item.Key));
 
             _context.Entry(character).State = EntityState.Modified;
             _context.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public IActionResult GetFiltered(Func<Character,bool> del)
-        {
-            var model = _context.Characters.Where(del).ToList();
-            return View(model);
         }
 
         [HttpGet]
@@ -106,6 +120,15 @@ namespace ForgingAhead.Controllers
             if (_context.Characters.Any(c => c.Name == character.Name))
                 ModelState.AddModelError("Name", "Name is already in use.");
             return ModelState.IsValid;
+        }
+
+        private void SelectEquipmentItems(Character character, Dictionary<string, bool> selectedEquipment)
+        {
+            foreach (var item in _context.Equipment.ToList())
+            {
+                var matchedItem = character.Equipment.FirstOrDefault(e => e.Name == item.Name);
+                selectedEquipment.Add(item.Name, (matchedItem != null));
+            }
         }
     }
 }

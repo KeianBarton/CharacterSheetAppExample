@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Create character";
 }
-@model Character
+@model CharacterEditViewModel
 @section header{
     <meta name="description" content="Create a character in ForgingAhead." />
 }
@@ -9,6 +9,8 @@
 <hr />
 <form asp-action="Create" asp-controller="Character">
     @Html.Partial("_CharacterEditForm", Model)
+    <hr />
+    @Html.Partial("_EquipmentSelection", Model)
     <hr />
     <input type="submit" value="Create" class="btn btn-default" />
 </form>

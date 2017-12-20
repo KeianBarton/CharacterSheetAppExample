@@ -63,13 +63,6 @@ namespace ForgingAhead.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetFiltered(Func<Equipment, bool> del)
-        {
-            var model = _context.Equipment.Where(del).ToList();
-            return View(model);
-        }
-
-        [HttpGet]
         [Route(EQUIPMENT + "/{name}/Details")]
         public IActionResult Details(string name)
         {
